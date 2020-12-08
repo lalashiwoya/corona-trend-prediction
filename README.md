@@ -21,3 +21,6 @@ In our project, we built a LSTM model to predict corona trend in three countries
 
    <div align=center><img src="https://github.com/lalashiwoya/corona-trend-prediction/blob/main/images/parameters.PNG" width=500></div>
    
+## Results and analyses
+Here are the :arrow_right: [results](https://drive.google.com/drive/folders/10NJXV1XMPxBWdfq1xl7ci1ePUT_5eANI?usp=sharing)
+   
