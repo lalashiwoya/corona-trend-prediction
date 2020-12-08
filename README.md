@@ -17,5 +17,6 @@ In our project, we built a LSTM model to predict corona trend in three countries
 3. Built a LSTM model 
 
 ## Running the python file lstm_corona.py and specify parameters like time span and features you are going to use to do the prediction. 
-   ![image](https://github.com/lalashiwoya/corona-trend-prediction/blob/main/images/parameters.PNG)
+
+   ![image](https://github.com/lalashiwoya/corona-trend-prediction/blob/main/images/parameters.PNG, width=200)
    
