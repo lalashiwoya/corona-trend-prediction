@@ -7,7 +7,7 @@ In our project, we built a LSTM model to predict corona trend in three countries
 
 ## What we have done
 1. Data Preparation
-   - Collected the number of new confirmed cases from USA, UK and Germany in the time period from Feb.20 until Nov.20 from [RKI] (https://www.arcgis.com/home/item.html?id=f10774f1c63e40168479a1feb6c7ca74).
+   - Collected the number of new confirmed cases from USA, UK and Germany in the time period from Feb.20 until Nov.20 from [RKI](https://www.arcgis.com/home/item.html?id=f10774f1c63e40168479a1feb6c7ca74).
    - Collected high price information of the contracts from [MCX](https://finance.yahoo.com/quote/MCX/history?p=MCX), [DJI] (https://finance.yahoo.com/quote/%5EDJI?p=^DJI&.tsrc=fin-srch), [DAX](https://finance.yahoo.com/quote/%5EGDAXI?p=^GDAXI&.tsrc=fin-srch).
    - Collected tweets related to refugee crisis and euro crisis in EU in the time period from Feb.20 until Nov.20.
    - Used [Vader](https://github.com/cjhutto/vaderSentiment) and [Flair](https://github.com/flairNLP/flair) to analyse the crawled english tweets.
