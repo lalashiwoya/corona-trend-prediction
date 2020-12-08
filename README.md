@@ -3,7 +3,7 @@
 </h1>
 
 ## Our Goal
-In our project, we built a LSTM model to predict corona trend in three countries: USA, UK and Germany and prepare the performance of using different features, i.e. stock index, new confirmed case and sentiment.
+In our project, we built a LSTM model to predict corona trend in three countries: USA, UK and Germany and compare the performance of using different features, i.e. stock index, new confirmed case and sentiment.
 
 ## What we have done
 1. Data Preparation
