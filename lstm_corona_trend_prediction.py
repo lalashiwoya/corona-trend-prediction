@@ -12,6 +12,7 @@ import random
 from gooey import Gooey, GooeyParser
 
 def create_dataset(data, time_span, train_length):
+    """ Split the dataset into train and test set"""
     train = data[:train_length]
     val = data[train_length:]
     padding_length = train_length - len(val)
@@ -24,24 +25,29 @@ def create_dataset(data, time_span, train_length):
 
 
 def rmse(predictions, test_data):
+    """ Calculate the root mean squared error between the predictions and gold standard"""
     residuals = test_data - predictions
     return np.sqrt(np.mean(residuals ** 2))
 
 
 def mape(y_true, y_pred):
+    """ Calculate the mean absolute percentage error between the predictions and gold standard"""
     y_true, y_pred = np.array(y_true), np.array(y_pred)
     return np.mean(np.abs((y_true - y_pred) / (y_true + 0.01)))
 
 
 def mae(y_true, y_pred):
+    """ Calculate the mean average error between the predictions and gold standard"""
     return mean_absolute_error(y_true, y_pred)
 
 
 def simple_moving_average(data, window):
+    """ Use moving average to smooth the a list of data"""
     return pd.Series(data).rolling(window).mean().iloc[window - 1:].values
 
 
 def columns_moving_average(data, windows):
+    """ Use moving average to smooth colunms of data"""
     data_with_ma = np.zeros((data.shape[0] - windows + 1, data.shape[1]))
     for i in range(data.shape[1]):
         sma = simple_moving_average(data[:, i], windows)
@@ -50,12 +56,14 @@ def columns_moving_average(data, windows):
 
 
 def zero_mean_unit_variance(data):
+    """Normalize the data"""
     normalized_data = data - np.mean(data)  # zero mean
     normalized_data = normalized_data / np.std(normalized_data)  # unit variance
     return normalized_data
 
 
 def combine_data(arr_1, arr_2):
+    """Concatenate the train and test data to create a complete kurve"""
     return np.concatenate((arr_1, arr_2), axis=0)[:, 0]
 
 
@@ -104,7 +112,8 @@ def main():
                         help="Specify the value of random seed you are going to use during the whole process")
 
     args = parser.parse_args()
-
+    
+    # set the random seed of the system
     os.environ['PYTHONHASHSEED'] = str(args.seed_value)
     random.seed(args.seed_value)
     np.random.seed(args.seed_value)
@@ -183,14 +192,15 @@ def main():
     print('Mean Absolute Error: ',mean_ae)
     print('R2: ',r2)
 
-
+    # write the predictions to a csv file
     fname = f"{features},time_span={args.time_span},rmse={root_mse},mape={mean_ape},mae={mean_ae},r2={r2} in {args.country}"
     filepath = os.path.join(args.output_dir, f"{fname}.csv")
     df = pd.DataFrame({'date': date, "actual new cases from train + prediction on the test": actual_pred,
                        "prediction on the train+test set": pred_total,
                        f"actual {args.country} cases": actual_total})
     df.to_csv(filepath, index=False)
-
+    
+    # write the errors into a csv file
     record_path = args.record_dir / f"{args.country}.csv"
     # record_path=os.path.join(args.record_dir,f"2 layer RNN in {args.country_to_be_predicted}.csv")
     with open(record_path, 'a+') as csvfile:
